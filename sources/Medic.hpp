@@ -4,8 +4,6 @@ namespace pandemic {
 
     class Medic: public Player {
 
-        private:
-
         public:
         
         Medic(Board& b, const City& c): Player(b, c)// Init line

@@ -15,11 +15,9 @@ namespace pandemic {
             Board& b;
             City curr_city;
             std::string name;
-            // // std::vector<bool> cards; // a vector of size 48 to hold a bool value in every city index
             std::map<City, bool> cards;
             bool has_card(const City& city){ return cards[city]; }
 
-            // const std::string player_role;
             std::vector<City> get_n_cards_from_hand(const int&, bool, const Color&);
             
         public:

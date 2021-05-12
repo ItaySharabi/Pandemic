@@ -26,8 +26,6 @@ namespace pandemic{
                
             throw invalid_argument("No research station in current city! cannot discover cure!");
         }
-
-
         return *this;
     }
     

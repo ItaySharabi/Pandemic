@@ -6,7 +6,6 @@ using namespace std;
 namespace pandemic {
 
     Virologist& Virologist::treat(const City& city)  {
-        // std::cout << "treat(" << (int)city << ") from Virologist" << std::endl;
 
         if(cards[city]) {
             City temp = curr_city;

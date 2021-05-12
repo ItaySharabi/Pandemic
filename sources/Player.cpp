@@ -7,14 +7,11 @@ using namespace std;
 namespace pandemic {
 
     Player::Player(Board& board, const City& city): /* Init line */b(board), curr_city(city){
-        // this->b = board;
         this->curr_city = city;
         name = "player";
-        // cout << "Player created!" << endl;
     }
 
     Player& Player::take_card(const City& city) {
-        // cout << "take_card(" << getCity(city) << ")  - " << getColor(b.city_color(city)) << endl;
         cards[city] = true; // need to cast from ulong to uint
         return *this;
     }
@@ -22,7 +19,6 @@ namespace pandemic {
 
     /** This method iterates over the players card collection and
         pushes "good cards" into a vector and returns the vector:
-
         @param n: How many cards to draw?
         @param unique_color: Should the cards be unique? set TRUE
                                                 Otherwise - FALSE.

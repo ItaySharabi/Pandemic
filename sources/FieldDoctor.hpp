@@ -7,9 +7,7 @@ namespace pandemic {
         public:
         
         FieldDoctor(Board& b, const City& city): Player(b, city)
-         {
-            //  std::cout << "FieldDoctor Created!" << std::endl;
-             };
+         {/*  std::cout << "FieldDoctor Created!" << std::endl;*/};
 
 
         FieldDoctor& treat(const City&) override;

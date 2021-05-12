@@ -3,7 +3,6 @@ namespace pandemic {
 
     class Researcher: public Player {
 
-        private:
         public:
         
         Researcher(Board& b, const City& c):Player(b, c)
@@ -12,8 +11,6 @@ namespace pandemic {
 
         Researcher& discover_cure(const Color&) override;
         const std::string role() const override{return "Researcher";}
-
-
     };
     
 };

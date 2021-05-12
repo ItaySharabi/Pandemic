@@ -6,9 +6,7 @@ namespace pandemic {
 
     class Dispatcher: public Player {
 
-        private:
-        public:
-        
+        public:        
         Dispatcher(Board& b, const City& c): Player(b, c)
         {/*std::cout << "Dispatcher Created!" << std::endl;*/}
 

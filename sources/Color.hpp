@@ -1,15 +1,3 @@
-// #pragma once
-// #include <iostream>
-
-// namespace pandemic {
-
-//     enum class Color {
-//         Blue, Yellow, Black, Red
-//     };
-
-// };
-
-
 #pragma once
 #include <iostream>
 
@@ -20,9 +8,23 @@ enum Color{
     Yellow
 };
 
-inline std::string getColor(Color num) {
-    return (num == 0) ? "Black": (num == 1) ? "Blue": (num == 2) ? "Red": "Yellow";
+inline std::string getColor(Color color) {
+
+    switch (color){
+        case 0:
+            return "Black";
+        case 1:
+            return "Blue";
+        case 2:
+            return "Red";
+        case 3:
+            return "Yellow";
+    }
 }
 inline Color getColor(std::string color) {
-    return (color == "Black") ? Black: (color == "Blue") ? Blue: (color == "Red") ? Red : Yellow;
+
+    return (color == "Black") ? Black :
+    (color == "Blue") ? Blue : 
+    (color == "Yellow") ? Yellow :
+    Red;
 }

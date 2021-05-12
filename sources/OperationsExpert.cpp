@@ -13,7 +13,6 @@ namespace pandemic {
                 Player::build();
                 cards[curr_city] = true;
             }
-            
         return *this;
     }
 

@@ -42,7 +42,6 @@ namespace pandemic {
         //     std::cout << e.what() << std::endl;
         // }
 
-        
         return *this;
     }
 
@@ -50,16 +49,13 @@ namespace pandemic {
 
         if(curr_city == city) {
             if(b[curr_city] > 0) {
-                // if (!b.has_cure(curr_city)) {
                     b[curr_city] = 0;
-                // }
             } else {
                 throw std::invalid_argument("No disease in current city!");
             }
         } else {
             throw std::invalid_argument("Cannot cure outside of current city!");
         }
-        // std::cout << "b[" << getCity(city) << "] = " << b[city] << std::endl;
         return *this;
     }
 

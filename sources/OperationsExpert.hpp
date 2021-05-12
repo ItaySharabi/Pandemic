@@ -11,7 +11,6 @@ namespace pandemic {
 
         OperationsExpert& build() override;
         const std::string role() const override{return "OperationsExpert";}
-
     };
     
 };

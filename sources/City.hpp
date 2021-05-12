@@ -1,71 +1,12 @@
-// #pragma once
-
-// namespace pandemic {
-
-//     enum class City {
-
-//             Chicago, Miami, LosAngeles, SanFrancisco, Atlanta, MexicoCity, Bogota,
-//             Lima, Santiago, BuenosAires, SaoPaulo, Lagos, Kinshasa, Johannesburg, 
-//             Khartoum, Cairo, Algiers, Riyadh, Baghdad, Istanbul, Paris, Madrid, 
-//             Karachi, Mumbai, Chennai, Moscow, StPetersburg, Essen, London, Milan,
-//             Tehran, Delhi, Jakarta, HoChiMinhCity, Manila, Taipei, Osaka,
-//             Sydney, Shanghai, Beijing, Seoul, Tokyo, Kolkata, Montreal, NewYork,
-//             Washington, Bangkok, HongKong
-//     };
-    
-// };
 #pragma once
 #include <iostream>
 
 enum City{
-    Algiers,
-    Atlanta,
-    Baghdad,
-    Bangkok,
-    Beijing,
-    Bogota,
-    BuenosAires,
-    Cairo,
-    Chennai,
-    Chicago,
-    Delhi,
-    Essen,
-    HoChiMinhCity,
-    HongKong,
-    Istanbul,
-    Jakarta,
-    Johannesburg,
-    Karachi,
-    Khartoum,
-    Kinshasa,
-    Kolkata,
-    Lagos,
-    Lima,
-    London,
-    LosAngeles,
-    Madrid,
-    Manila,
-    MexicoCity,
-    Miami,
-    Milan,
-    Montreal,
-    Moscow,
-    Mumbai,
-    NewYork,
-    Osaka,
-    Paris,
-    Riyadh,
-    SanFrancisco,
-    Santiago,
-    SaoPaulo,
-    Seoul,
-    Shanghai,
-    StPetersburg,
-    Sydney,
-    Taipei,
-    Tehran,
-    Tokyo,
-    Washington
+    Algiers, Atlanta, Baghdad, Bangkok, Beijing, Bogota, BuenosAires, Cairo, Chennai, Chicago,
+    Delhi, Essen, HoChiMinhCity, HongKong, Istanbul, Jakarta, Johannesburg, Karachi, Khartoum,
+    Kinshasa, Kolkata, Lagos, Lima, London, LosAngeles, Madrid, Manila, MexicoCity, Washington,
+    Miami, Milan, Montreal, Moscow, Mumbai, NewYork, Osaka, Paris, Riyadh, SanFrancisco, Santiago,
+    SaoPaulo, Seoul, Shanghai, StPetersburg, Sydney, Taipei, Tehran, Tokyo
 };
 
 inline std::string getCity(City city){
