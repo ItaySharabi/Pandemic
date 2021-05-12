@@ -1,5 +1,4 @@
 #include "GeneSplicer.hpp"
-#include <array>
 
 using namespace std;
 

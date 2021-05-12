@@ -1,9 +1,6 @@
 #include <iostream>
 #include "Board.hpp"
-#include "Player.hpp"
-#include "City.hpp"
-#include "Color.hpp"
-#include <map>
+
 
 using namespace std;
 
@@ -42,7 +39,6 @@ namespace pandemic {
             os << "City#" << getCity(pair.first) << ", Color#" << getColor(pair.second._color) << endl << "{\n";
             for (const auto &pair2 : board.cities.at(pair.first)._neighbors) {
                 os << "\tNeighbor: City#" << getCity(pair2) << ", " << endl;
-
             }   
             os << "}\n";
         }
@@ -51,29 +47,30 @@ namespace pandemic {
 
     void Board::initBoard(ifstream& units_file) {
         
-            std::string line;
-            std::string delimiter = " ";
+            string line;
+            string delimiter = " ";
             size_t pos = 0;
-            std::string word;
-            std::string city;
-            while(std::getline(units_file, line)){
-                int run = 0;
+            string word;
+            string city;
+
+            while(getline(units_file, line)){
+                int word_index = 0;
                 int length = line.length();
                 while ((pos = line.find(delimiter)) != std::string::npos) {
                     word = line.substr(0, pos);
                     line.erase(0, pos + delimiter.length());
-                    if(run == 0){
+                    if(word_index == 0){
                         city = word;
                         cities[getCity(word)];
                         // Cure_discovered[getCity(word)] = false;
                         cities[getCity(word)]._disease_dice_count = 0;
                         cities[getCity(word)]._has_research_station = false;
-                    }else if(run == 1){
+                    }else if(word_index == 1){
                         cities[getCity(city)]._color = getColor(word); 
-                    }else if(run > 1){
+                    }else if(word_index > 1){
                         cities[getCity(city)]._neighbors.insert(getCity(word));
                     }
-                    run++;
+                    ++word_index;
                 }
                 if(length > 0){
                     cities[getCity(city)]._neighbors.insert(getCity(line));

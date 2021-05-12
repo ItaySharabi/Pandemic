@@ -1,5 +1,4 @@
 #include "Player.hpp"
-#include <exception>
 namespace pandemic {
 
     class Medic: public Player {

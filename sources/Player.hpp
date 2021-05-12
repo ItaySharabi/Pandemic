@@ -3,6 +3,7 @@
 #include "Board.hpp"
 #include "Color.hpp"
 #include <map>
+#include <exception>
 #include <vector>
 #include <iostream>
 

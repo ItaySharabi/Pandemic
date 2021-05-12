@@ -1,5 +1,4 @@
 #include "Scientist.hpp"
-#include <vector>
 
 using namespace std;
 

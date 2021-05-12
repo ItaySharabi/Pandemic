@@ -1,5 +1,4 @@
 #include "Researcher.hpp"
-#include <array>
 
 using namespace std;
 
