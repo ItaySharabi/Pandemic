@@ -9,7 +9,7 @@ namespace pandemic {
     Board::Board() {
 
         std::ifstream units_file{"cities_map.txt"};
-        initBoard(units_file);
+        read_cities(units_file);
     }
 
     Board::~Board() {}
@@ -45,7 +45,7 @@ namespace pandemic {
         return os;
     }
 
-    void Board::initBoard(ifstream& units_file) {
+    void Board::read_cities(ifstream& units_file) {
         
             string line;
             string delimiter = " ";

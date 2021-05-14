@@ -46,8 +46,8 @@ struct Node {
         void remove_cures() {for (auto& cure : cures) { cure.second = false; }}
         const Color city_color(const City& city) {const Color c = cities[city]._color; return c;}
 
-
-        void initBoard(std::ifstream&);
+        // initialize the board 
+        void read_cities(std::ifstream&); 
   
   
     };
