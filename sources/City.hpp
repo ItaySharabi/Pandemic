@@ -62,6 +62,7 @@ inline std::string getCity(City city){
     }
     return "None";
 }
+
 inline City getCity(std::string city){
         if(city == "Algiers") return Algiers;
         else if(city == "Atlanta") return Atlanta;

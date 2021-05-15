@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <map>
 #include <set>
 #include "City.hpp"
@@ -9,7 +10,7 @@
 namespace pandemic {
 
                                         /*==============//
-                                        ||    Node      ||
+                                        ||    City      ||
                                         ||    Struct    ||
                                         //==============*/
 struct Node {
@@ -36,19 +37,20 @@ struct Node {
         friend std::ostream& operator<< (std::ostream&, const Board&);
 
         // My additions:
-        bool are_neighbor_cities(const City& c1, const City& c2){return cities[c1]._neighbors.count(c2) > 0;}
-        bool has_research_station(const City& city){return cities[city]._has_research_station;}
-        void set_station(const City& city){cities[city]._has_research_station = true;}
-        void remove_station(const City& city) {cities[city]._has_research_station = false;}
-        bool has_cure(const Color& color) {return cures[color];}
-        bool has_cure(const City& city) {return cures[cities[city]._color];}
-        void set_cure(const Color& color) {cures[color] = true;}
-        void remove_cures() {for (auto& cure : cures) { cure.second = false; }}
-        const Color city_color(const City& city) {const Color c = cities[city]._color; return c;}
+        bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
+        bool has_research_station(const City& city)              const {return cities.at(city)._has_research_station;}
+        const Color city_color(const City& city)                 const {const Color c = cities.at(city)._color; return c;}
+
+        bool has_cure(const Color& color)                              {return cures[color];} // Cannot use .at() - throws an exception
+        bool has_cure(const City& city)                                {return cures[cities[city]._color];}
+        void set_station(const City& city)                             {cities[city]._has_research_station = true;}
+        void remove_station(const City& city)                          {cities[city]._has_research_station = false;}
+        void set_cure(const Color& color)                              {cures[color] = true;}
+        void remove_cures()                                            {for (auto& cure : cures) { cure.second = false; }}
 
         // initialize the board 
         void read_cities(std::ifstream&); 
-  
+        void read_cities1(std::ifstream&);
   
     };
 

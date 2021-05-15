@@ -21,6 +21,7 @@ inline std::string getColor(Color color) {
             return "Yellow";
     }
 }
+
 inline Color getColor(std::string color) {
 
     return (color == "Black") ? Black :
