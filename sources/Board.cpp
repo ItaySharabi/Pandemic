@@ -80,13 +80,13 @@ namespace pandemic {
             while(units_file.good()){
                 
                 units_file >> city >> color;
-                cities[getCity(city)];       // init City 'Node'
-                cities[getCity(city)]._disease_dice_count = 0;
+                cities[getCity(city)];                               // init City 'Node'
+                cities[getCity(city)]._disease_dice_count = 0;       // fill in Node fields
                 cities[getCity(city)]._has_research_station = false;
                 cities[getCity(city)]._color = getColor(color); 
 
                 getline(units_file, neighbors);
-                istringstream iss{neighbors}; // insert neighbor string into an input stream
+                istringstream iss{neighbors}; // insert neighbors string into an input stream
 
                 while (iss >> neighbor) { // empty the stream into 'neighbor', seperated by white-spaces.
                     cities[getCity(city)]._neighbors.insert(getCity(neighbor)); // add neighbor to neighbors set.           

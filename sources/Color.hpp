@@ -1,31 +1,34 @@
 #pragma once
 #include <iostream>
 
-enum Color{
-    Black,
-    Blue,
-    Red,
-    Yellow
-};
+namespace pandemic {
 
-inline std::string getColor(Color color) {
+    enum Color{
+        Black,
+        Blue,
+        Red,
+        Yellow
+    };
 
-    switch (color){
-        case 0:
-            return "Black";
-        case 1:
-            return "Blue";
-        case 2:
-            return "Red";
-        case 3:
-            return "Yellow";
+    inline std::string getColor(const Color& color) {
+
+        switch (color){
+            case 0:
+                return "Black";
+            case 1:
+                return "Blue";
+            case 2:
+                return "Red";
+            case 3:
+                return "Yellow";
+        }
     }
-}
 
-inline Color getColor(std::string color) {
+    inline Color getColor(const std::string& color) {
 
-    return (color == "Black") ? Black :
-    (color == "Blue") ? Blue : 
-    (color == "Yellow") ? Yellow :
-    Red;
-}
+        return (color == "Black") ? Black :
+        (color == "Blue") ? Blue : 
+        (color == "Yellow") ? Yellow :
+        Red;
+    }
+};

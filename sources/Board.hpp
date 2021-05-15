@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <map>
@@ -45,7 +44,6 @@ struct Node {
         bool has_cure(const City& city)                                {return cures[cities[city]._color];}
         void set_station(const City& city)                             {cities[city]._has_research_station = true;}
         void set_cure(const Color& color)                              {cures[color] = true;}
-        // void remove_station(const City& city)                          {cities[city]._has_research_station = false;}
 
         // initialize the board 
         void read_cities(std::ifstream&); 
