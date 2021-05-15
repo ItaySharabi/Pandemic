@@ -28,20 +28,11 @@ namespace pandemic {
         return *this;
     }
 
-
     Medic& Medic::drive(const City& city) {
-
         Player::drive(city);
-        // try {
-        //     Player::drive(city);
-        //     // std::cout << "ride() MEDIC OVERRIDE" << std::endl;
         if(b.has_cure(curr_city)) {
             b[curr_city] = 0;
         }
-        // } catch (const std::exception& e) {
-        //     std::cout << e.what() << std::endl;
-        // }
-
         return *this;
     }
 

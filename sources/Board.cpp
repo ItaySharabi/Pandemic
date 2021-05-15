@@ -64,39 +64,7 @@ namespace pandemic {
      * @param units_file: A reference to an ifstream object that points to a text file, 
      *                    containing all cities, their color and neighbors.
      */
-    // void Board::read_cities(ifstream& units_file) {
-        
-    //         string line;
-    //         string delimiter = " ";
-    //         size_t pos = 0;
-    //         string word;
-    //         string city;
-
-    //         while(getline(units_file, line)){
-    //             int i = 0;
-    //             int length = line.length();
-    //             while ((pos = line.find(delimiter)) != std::string::npos) {
-    //                 word = line.substr(0, pos);
-    //                 line.erase(0, pos + delimiter.length());
-    //                 if(i == 0){
-    //                     city = word;
-    //                     cities[getCity(word)];
-    //                     cities[getCity(word)]._disease_dice_count = 0;
-    //                     cities[getCity(word)]._has_research_station = false;
-    //                 }else if(i == 1){
-    //                     cities[getCity(city)]._color = getColor(word); 
-    //                 }else if(i > 1){
-    //                     cities[getCity(city)]._neighbors.insert(getCity(word));
-    //                 }
-    //                 ++i;
-    //             }
-    //             if(length > 0){
-    //                 cities[getCity(city)]._neighbors.insert(getCity(line));
-    //             }
-    //         }
-    //     }
-
-        void Board::read_cities(ifstream& units_file) {
+    void Board::read_cities(ifstream& units_file) {
         
             string city;
             string color;

@@ -4,9 +4,9 @@ using namespace std;
 
 namespace pandemic {
 
-    Player::Player(Board& board, const City& city): /* Init line */b(board), curr_city(city){
-        this->curr_city = city;
-        name = "player";
+    Player::Player(Board& board, const City& city): 
+    b(board), curr_city(city), num_of_cards_to_discover(N) /* Init line */{
+
     }
 
     Player& Player::take_card(const City& city) {
@@ -66,7 +66,7 @@ namespace pandemic {
         @param n: How many cards to draw?
         @param unique_color: Should the cards be unique? set TRUE
                                                 Otherwise - FALSE.
-        @param color:       The disease color to cure, if cards should be unique 
+        @param color: The disease color to cure, if cards should be unique 
                             - then the card color should be 'color'.    
     */
     vector<City> Player::get_n_cards_from_hand(const int& n, bool unique_color, const Color& color) {
@@ -90,7 +90,7 @@ namespace pandemic {
                     cards[good_cards.at(i)] = false;
                 }
             } else {
-                return vector<City>(0); // Return an empty vector instead of NULL 
+                return vector<City>(0); // Return an empty vector instead of NULL if there are not enough cards
             }
         return good_cards;
     }
