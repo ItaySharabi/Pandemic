@@ -41,6 +41,11 @@ namespace pandemic {
         return cities[city]._disease_dice_count;
     }
     
+    // Removes all cures that were found
+    void Board::remove_cures() {
+        for (auto& cure : cures) { cure.second = false; }
+    }
+
     /**
      * @param os: An output stream object reference to print data into.
      * @param board: A board object to be printed.
