@@ -5,8 +5,12 @@ using namespace std;
 namespace pandemic {
 
     Player::Player(Board& board, const City& city): 
-    b(board), curr_city(city), num_of_cards_to_discover(N) /* Init line */{
+    b(board), curr_city(city), num_of_cards_to_discover(N) /* Init line */{/*Constructor*/}
 
+    void Player::throw_cards(vector<City>& vector) {
+        for (unsigned int i = 0; i < vector.size(); i++) { // Throw cards
+            cards[vector.at(i)] = false;
+        }
     }
 
     Player& Player::take_card(const City& city) {
@@ -86,13 +90,9 @@ namespace pandemic {
                 } 
             }
             if (card_counter == n) {
-                for (unsigned int i = 0; i < good_cards.size(); i++) { // Throw cards
-                    cards[good_cards.at(i)] = false;
-                }
-            } else {
-                return vector<City>(0); // Return an empty vector instead of NULL if there are not enough cards
-            }
-        return good_cards;
+                return good_cards;
+            } 
+            return vector<City>(0);
     }
 
     Player& Player::discover_cure(const Color& color) {
@@ -103,8 +103,10 @@ namespace pandemic {
             bool unique_cards = true;// all players need unique color cards to cure.
             vector<City> good_cards = get_n_cards_from_hand(n, unique_cards, color);
 
-            if (good_cards.size() == n) { // if get_n_cards() succeeded the amount of items should be exactly n
+            if (good_cards.size() == n) { // if get_n_cards() succeeded the amount of cards should be exactly n
                 b.set_cure(color);        // discover cure - set true in cures[color] to indicate cure is found
+                
+                throw_cards(good_cards);  // throw the cards collected
             } else {
                 throw invalid_argument("Not enough cards!");
             }

@@ -18,11 +18,13 @@ const int N = 5;
             std::map<City, bool> cards;
             std::vector<City> get_n_cards_from_hand(const int&, bool, const Color&);
             int num_of_cards_to_discover;
+            void throw_cards(std::vector<City>&);
             
         public:
             Player(Board&, const City&);
             ~Player(){}
-            
+
+            // Required methods: 
             Player& take_card(const City&);
 
             virtual Player& drive(const City&);

@@ -1,13 +1,10 @@
-#include <iostream>
 #include "Board.hpp"
-
 
 using namespace std;
 
 namespace pandemic {
 
     Board::Board() {
-
         std::ifstream units_file{"cities_map.txt"};
         read_cities(units_file);
     }

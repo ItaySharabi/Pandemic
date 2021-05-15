@@ -14,6 +14,7 @@ namespace pandemic {
 
             if (good_cards.size()  == n) {
                 b.set_cure(color);
+                throw_cards(good_cards);
             } else {
                 throw invalid_argument("Not enough cards!");
             }
