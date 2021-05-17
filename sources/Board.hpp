@@ -7,7 +7,6 @@
 #include "Color.hpp"
 
 namespace pandemic {
-
                                         /*==============//
                                         ||    City      ||
                                         ||    Struct    ||
@@ -24,7 +23,7 @@ struct Node {
         private:
             std::map<Color, bool> cures;
             std::map<City, Node> cities;
-
+            
         public:
 
         Board();
@@ -37,6 +36,7 @@ struct Node {
         friend std::ostream& operator<< (std::ostream&, const Board&);
 
         // My additions:
+        const Node getNode(const std::string& city)              const {return cities.at(getCity(city));}
         const Color city_color(const City& city)                 const {const Color c = cities.at(city)._color; return c;}
         bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
         bool has_research_station(const City& city)              const {return cities.at(city)._has_research_station;}

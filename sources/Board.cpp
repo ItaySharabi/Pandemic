@@ -51,11 +51,15 @@ namespace pandemic {
      * the city name and color, and all of its neighbor cities.
      */
     ostream& operator<< (ostream& os, const Board& board) {
-        os << "Board: " << endl;
+        // os << "Board: " << endl;
+
         for (const auto &pair : board.cities) {
-            os << "City: " << getCity(pair.first) << ", Color: " << getColor(pair.second._color) << endl << "{\n";
-            for (const auto &pair2 : board.cities.at(pair.first)._neighbors) {
-                os << "\tNeighbor: " << getCity(pair2) << ", " << endl;
+            os << "City: " << getCity(pair.first) << "(" << getColor(pair.second._color) << ")" << endl << "{\n";
+            os << "\tDisease level:    " << board.cities.at(pair.first)._disease_dice_count << endl;
+            os << "\tResearch station: " << board.cities.at(pair.first)._disease_dice_count << endl;
+
+            for (const auto &neighbor : board.cities.at(pair.first)._neighbors) {
+                os << "\tNeighbor: " << getCity(neighbor) << endl;
             }   
             os << "}\n";
         }

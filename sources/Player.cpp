@@ -7,7 +7,7 @@ namespace pandemic {
     Player::Player(Board& board, const City& city): 
     b(board), curr_city(city), num_of_cards_to_discover(N) /* Init line */{/*Constructor*/}
 
-    void Player::throw_cards(vector<City>& vector) {
+    void Player::throw_cards(const vector<City>& vector) {
         for (unsigned int i = 0; i < vector.size(); i++) { // Throw cards
             cards[vector.at(i)] = false;
         }
@@ -73,7 +73,7 @@ namespace pandemic {
         @param color: The disease color to cure, if cards should be unique 
                             - then the card color should be 'color'.    
     */
-    vector<City> Player::get_n_cards_from_hand(const int& n, bool unique_color, const Color& color) {
+    vector<City> Player::get_n_cards_from_hand(const int& n, const bool& unique_color, const Color& color) {
 
             int card_counter = 0;
             City city = City::Algiers; // Initialized for make tidy, otherwise - init in for loop
@@ -147,5 +147,12 @@ namespace pandemic {
             throw invalid_argument(role() + " Cannot use treat() outside of city");
         }
         return *this;
+    }
+
+    ostream& operator<< (ostream& os, const Player& p) {
+
+        os << p.role() + ": " << endl;
+        os << "\tCurrent City: " + p.get_curr_city() << endl;        
+        return os;
     }
 };      
