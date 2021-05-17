@@ -45,6 +45,7 @@ int main() {
 	Player *p;
 	cout << "Game Started!\nAll players spawned in Atlanta. The world is cured of disease so far...\n" << endl;
 
+							/*Part A*/
 	{ // A random city will be infected with a small disease count and
 	  // some player will go to treat() the city.
 		sleep(3);
@@ -73,13 +74,13 @@ int main() {
 		sleep(3);
 	}
 
-
+							/*Part B*/
 	{ // A random city will be infected with a lot of disease -
 	  // forcing the medic to go treat or a cure discovery
 
 		infected_city = random_city();	// Choose a random city to infect
 		b[infected_city] = 700;				// increase disease lv. to 10
-		cout << RED << "A disease was discovered in "  << RESET << getCity(infected_city) << endl;
+		cout << RED << "\nA disease was discovered in "  << RESET << getCity(infected_city) << endl;
 
 			p = choose_player(players);
 			cout << p->role() + " is now flying to " + getCity(infected_city) << endl;
@@ -89,7 +90,7 @@ int main() {
 			p->fly_direct(infected_city);
 			cout << *p << endl;
 			sleep(2);
-			cout << "The disease level in " << RED << getCity(infected_city) << RESET << " is " << b[infected_city] << endl;
+			cout << RED << "The disease level in " << getCity(infected_city) << RESET << " is " << b[infected_city] << endl;
 
 
 		if (p->role() != "Medic" && p->role() != "GeneSplicer") {
@@ -114,12 +115,15 @@ int main() {
 			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl << endl; 
 
 		} else if ((*p).role() == "Medic"){
+			// Player is Medic
 			cout << "-Medic: This will be a peice of cake!\n" << endl; 
 			sleep(2);
 			cout << "Medic is using treat()... " << "(disease lv: " << b[infected_city] << ")\n" << endl;
 			medic.treat(infected_city);
 			sleep(2);
 			cout << getCity(infected_city) << " is " << GREEN << "clean!\n" << RESET << endl; 
+
+
 		} else {
 			// Player is GeneSplicer
 			cout << "-GeneSplicer: I can discover a cure with any 5 cards\n" << endl;

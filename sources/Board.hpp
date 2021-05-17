@@ -36,10 +36,10 @@ struct Node {
 
             // My additions: (Getters and Setters)
             const Color city_color(const City& city)                 const {const Color c = cities.at(city)._color; return c;}
-            bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
-            bool has_research_station(const City& city)              const {return cities.at(city)._has_research_station;}
-            bool has_cure(const Color& color)                              {return cures[color];}
-            bool has_cure(const City& city)                                {return cures[cities[city]._color];}
+            const bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
+            const bool has_research_station(const City& city)        const {return cities.at(city)._has_research_station;}
+            const bool has_cure(const Color& color)                        {return cures[color];}
+            const bool has_cure(const City& city)                          {return cures[cities[city]._color];}
             void set_station(const City& city)                             {cities[city]._has_research_station = true;}
             void set_cure(const Color& color)                              {cures[color] = true;}
 

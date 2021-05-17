@@ -11,13 +11,9 @@ namespace pandemic {
         bool unique = true;
         vector<City> good_cards = get_n_cards_from_hand(n, unique, color);
 
-        if (good_cards.size() == n) {   // If N cards were found
-            
+        if (good_cards.size() == n) {   // If n cards were found in player's hand
             b.set_cure(color);
-            for (unsigned int i = 0; i < good_cards.size(); i++) {
-                City c = good_cards.at(i);
-                cards[c] = false;
-            }
+            throw_cards(good_cards);
         } else {
             throw invalid_argument("Not enough cards!");
         }

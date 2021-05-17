@@ -12,7 +12,7 @@ namespace pandemic {
     Board::~Board() {}
     
     /**
-     * @is_clean: A city is clean if its disease level is 0
+     * @is_clean: A city is clean iff its disease level is 0
      * This method iterates over the cities map, if all cities are clean.
     */
     bool Board::is_clean() const{
@@ -48,6 +48,8 @@ namespace pandemic {
      */
     ostream& operator<< (ostream& os, const Board& board) {
         // os << "Board: " << endl;
+        // cout << "Cures Status: " << endl;
+
         for (const auto &pair : board.cities) {
             os << "City: " << getCity(pair.first) << "(" << getColor(pair.second._color) << ")" << endl << "{\n";
             os << "\tDisease level:    " << board.cities.at(pair.first)._disease_dice_count << endl;

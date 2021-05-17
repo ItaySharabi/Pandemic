@@ -14,10 +14,9 @@ namespace pandemic{
             vector<City> good_cards = get_n_cards_from_hand(n, unique_cards, color);
 
             if (good_cards.size() == n) {
-                unsigned int i = 0;
                 b.set_cure(color);
-                
                 throw_cards(good_cards);
+                
             } else {
                 throw invalid_argument("Need 5 cards to discover a cure!");
             }

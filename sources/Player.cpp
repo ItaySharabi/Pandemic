@@ -7,12 +7,6 @@ namespace pandemic {
     Player::Player(Board& board, const City& city): 
     b(board), curr_city(city), num_of_cards_to_discover(N) /* Init line */{/*Constructor*/}
 
-    void Player::throw_cards(const vector<City>& vector) {
-        for (unsigned int i = 0; i < vector.size(); i++) { // Throw cards
-            cards[vector.at(i)] = false;
-        }
-    }
-
     Player& Player::take_card(const City& city) {
         cards[city] = true; // need to cast from ulong to uint
         return *this;
@@ -64,46 +58,15 @@ namespace pandemic {
         return *this;
     }
 
-
-    /** This method iterates over the players card collection and
-        pushes "good cards" into a vector and returns the vector:
-        @param n: How many cards to draw?
-        @param unique_color: Should the cards be unique? set TRUE
-                                                Otherwise - FALSE.
-        @param color: The disease color to cure, if cards should be unique 
-                            - then the card color should be 'color'.    
-    */
-    vector<City> Player::get_n_cards_from_hand(const int& n, const bool& unique_color, const Color& color) {
-
-            int card_counter = 0;
-            City city = City::Algiers; // Initialized for make tidy, otherwise - init in for loop
-            // save cards in a vector of City
-            vector<City> good_cards = {};
-            for(const auto& pair : cards) {
-                city = pair.first;
-                if(card_counter == n){break;}
-                //    has card  && shouldn't be unique  OR   has card &&  card color is unique   
-                if((cards[city] && !unique_color) || ((cards[city] && b.city_color(city) == color ))) {
-                    // found color card
-                    good_cards.push_back(city);
-                    card_counter++;
-                } 
-            }
-            if (card_counter == n) {
-                return good_cards;
-            } 
-            return vector<City>(0);
-    }
-
     Player& Player::discover_cure(const Color& color) {
         if (b.has_cure(color)) {return *this;}
 
         if (b.has_research_station(curr_city)) {
-            const unsigned int n = 5; // all players need 5 cards to cure a disease
-            bool unique_cards = true;// all players need unique color cards to cure.
+            const int n = num_of_cards_to_discover; // all players need 5 cards to cure a disease
+            bool unique_cards = true;               // all players need unique color cards to cure.
             vector<City> good_cards = get_n_cards_from_hand(n, unique_cards, color);
 
-            if (good_cards.size() == n) { // if get_n_cards() succeeded the amount of cards should be exactly n
+            if (good_cards.size() == n) { // if the amount of cards in hand is exactly n
                 b.set_cure(color);        // discover cure - set true in cures[color] to indicate cure is found
                 
                 throw_cards(good_cards);  // throw the cards collected
@@ -116,7 +79,7 @@ namespace pandemic {
 
         return *this;
     }
- 
+
     Player& Player::build() {
         if(!b.has_research_station(curr_city)) {
 
@@ -154,5 +117,42 @@ namespace pandemic {
         os << p.role() + ": " << endl;
         os << "\tCurrent City: " + p.get_curr_city() << endl;        
         return os;
+    }
+
+        /** This method iterates over the players card collection and
+        pushes "good cards" into a vector and returns the vector:
+        @param n: How many cards to draw?
+        @param unique_color: Should the cards be unique? set TRUE
+                                                Otherwise - FALSE.
+        @param color: The disease color to cure, if cards should be unique 
+                            - then the card color should be 'color'.    
+    */
+    vector<City> Player::get_n_cards_from_hand(const int& n, const bool& unique_color, const Color& color) {
+
+            int card_counter = 0;
+            City city = City::Algiers; // Initialized for make tidy, otherwise - init in for loop
+            // save cards in a vector of City
+            vector<City> good_cards = {};
+            for(const auto& pair : cards) {
+                city = pair.first;
+                if(card_counter == n){break;}
+                //    has card  && shouldn't be unique OR has card &&  card color is unique   
+                if((cards[city] && !unique_color) || ((cards[city] && b.city_color(city) == color ))) {
+                    // found color card
+                    good_cards.push_back(city);
+                    card_counter++;
+                } 
+            }
+            if (card_counter == n) {
+                return good_cards;
+            } 
+            return vector<City>(0);
+    }
+
+    // Throws all cards that are found in the given vector
+    void Player::throw_cards(const vector<City>& vector) {
+        for (unsigned int i = 0; i < vector.size(); i++) { // Throw cards
+            cards[vector.at(i)] = false;
+        }
     }
 };      

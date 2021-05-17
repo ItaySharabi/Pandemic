@@ -2,7 +2,8 @@
 namespace pandemic {
 
     class Medic: public Player {
-
+        private:
+            void auto_heal();
         public:
         
         Medic(Board& b, const City& c): Player(b, c)// Init line

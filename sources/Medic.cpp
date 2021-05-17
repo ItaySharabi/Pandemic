@@ -6,33 +6,25 @@ namespace pandemic {
 
     Medic& Medic::fly_charter(const City& city) {
         Player::fly_charter(city);
-        if(b.has_cure(curr_city)) {
-            b[curr_city] = 0;
-        }
+        auto_heal();
         return *this;
     }
 
     Medic& Medic::fly_shuttle(const City& city) {
         Player::fly_shuttle(city);
-        if(b.has_cure(curr_city)) {
-            b[curr_city] = 0;
-        }
+        auto_heal();
         return *this;
     }
 
     Medic& Medic::fly_direct(const City& city) {
         Player::fly_direct(city);
-        if(b.has_cure(curr_city)) {
-            b[curr_city] = 0;
-        }
+        auto_heal();
         return *this;
     }
 
     Medic& Medic::drive(const City& city) {
         Player::drive(city);
-        if(b.has_cure(curr_city)) {
-            b[curr_city] = 0;
-        }
+        auto_heal();
         return *this;
     }
 
@@ -50,4 +42,9 @@ namespace pandemic {
         return *this;
     }
 
+    void Medic::auto_heal() {
+        if(b.has_cure(curr_city)) {
+            b[curr_city] = 0;
+        }
+    }
 };
