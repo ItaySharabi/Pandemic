@@ -7,10 +7,10 @@
 #include "Color.hpp"
 
 namespace pandemic {
-                                        /*==============//
-                                        ||    City      ||
-                                        ||    Struct    ||
-                                        //==============*/
+                    /*==============//
+                    ||    City      ||
+                    ||    Struct    ||
+                    //==============*/
 struct Node {
     Color _color;               // City color
     int _disease_dice_count;    // Diseas count
@@ -25,29 +25,26 @@ struct Node {
             std::map<City, Node> cities;
             
         public:
+            Board();
+            ~Board();
 
-        Board();
-        ~Board();
+            // Required methods:
+            bool is_clean() const;
+            int& operator[] (const City&);
+            void remove_cures();
+            friend std::ostream& operator<< (std::ostream&, const Board&);
 
-        // Required methods:
-        bool is_clean() const;
-        int& operator[] (const City&);
-        void remove_cures();
-        friend std::ostream& operator<< (std::ostream&, const Board&);
+            // My additions: (Getters and Setters)
+            const Color city_color(const City& city)                 const {const Color c = cities.at(city)._color; return c;}
+            bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
+            bool has_research_station(const City& city)              const {return cities.at(city)._has_research_station;}
+            bool has_cure(const Color& color)                              {return cures[color];}
+            bool has_cure(const City& city)                                {return cures[cities[city]._color];}
+            void set_station(const City& city)                             {cities[city]._has_research_station = true;}
+            void set_cure(const Color& color)                              {cures[color] = true;}
 
-        // My additions:
-        const Node getNode(const std::string& city)              const {return cities.at(getCity(city));}
-        const Color city_color(const City& city)                 const {const Color c = cities.at(city)._color; return c;}
-        bool are_neighbor_cities(const City& c1, const City& c2) const {return cities.at(c1)._neighbors.count(c2) > 0;} 
-        bool has_research_station(const City& city)              const {return cities.at(city)._has_research_station;}
-        bool has_cure(const Color& color)                              {return cures[color];}
-        bool has_cure(const City& city)                                {return cures[cities[city]._color];}
-        void set_station(const City& city)                             {cities[city]._has_research_station = true;}
-        void set_cure(const Color& color)                              {cures[color] = true;}
-
-        // initialize the board 
-        void read_cities(std::ifstream&); 
-        void read_cities1(std::ifstream&);
+            // Board initialization:
+            void read_cities(std::ifstream&); 
   
     };
 

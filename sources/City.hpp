@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 namespace pandemic{
 
 
@@ -10,7 +11,8 @@ namespace pandemic{
         Miami, Milan, Montreal, Moscow, Mumbai, NewYork, Osaka, Paris, Riyadh, SanFrancisco, Santiago,
         SaoPaulo, Seoul, Shanghai, StPetersburg, Sydney, Taipei, Tehran, Tokyo
     };
-    inline City getCity(const int& cityNum) {
+    
+    static City getCity(const int& cityNum) {
         switch (cityNum){
             case Algiers : return Algiers; break; 
             case Atlanta : return Atlanta; break; 
@@ -64,7 +66,7 @@ namespace pandemic{
         return Tokyo;
     }
 
-    inline std::string getCity(const City& city){
+    static std::string getCity(const City& city){
         switch (city){
             case Algiers : return "Algiers"; break; 
             case Atlanta : return "Atlanta"; break; 
@@ -118,7 +120,7 @@ namespace pandemic{
         return "None";
     }
 
-    inline City getCity(const std::string& city){
+    static City getCity(const std::string& city){
             if(city == "Algiers") return Algiers;
             else if(city == "Atlanta") return Atlanta;
             else if(city == "Baghdad") return Baghdad;

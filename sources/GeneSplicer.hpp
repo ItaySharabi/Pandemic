@@ -9,7 +9,7 @@ namespace pandemic {
         {/*std::cout << "GeneSplicer Created!" << std::endl;*/}
 
         GeneSplicer& discover_cure(const Color&) override;
-        const std::string role() const override{return "GeneSplicer";}
+        const std::string role() const           override{return "GeneSplicer";}
     };
     
 };

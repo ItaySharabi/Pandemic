@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-// #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
 #include "sources/GameHeaders.hpp"
@@ -8,20 +7,9 @@
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
 #define RED     "\033[31m"      /* Red */
-#define GREEN   "\033[32m"      /* Green */
 #define YELLOW  "\033[33m"      /* Yellow */
 #define BLUE    "\033[34m"      /* Blue */
-#define MAGENTA "\033[35m"      /* Magenta */
-#define CYAN    "\033[36m"      /* Cyan */
-#define WHITE   "\033[37m"      /* White */
-#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
-#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
-#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
-#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
-#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
-#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
-#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+#define GREEN   "\033[32m"      /* Green */
 
 using namespace pandemic;
 using namespace std;
@@ -55,7 +43,7 @@ int main() {
 
 	City infected_city;
 	Player *p;
-	cout << "Game Started!\nAll players spawned in Atlanta. The world is cured of disease so far..." << endl;
+	cout << "Game Started!\nAll players spawned in Atlanta. The world is cured of disease so far...\n" << endl;
 
 	{ // A random city will be infected with a small disease count and
 	  // some player will go to treat() the city.
@@ -73,8 +61,8 @@ int main() {
 		cout << *p << endl;
 		sleep(3);
 
-		cout << "The disease level in " << RED << getCity(infected_city) << RESET << " is " << b[infected_city] << endl;
-		sleep(2);
+		cout << RED <<"The disease level in " << RESET << getCity(infected_city) << " is " << b[infected_city] << endl;
+		sleep(3);
 		while (b[infected_city] > 0) {
 			cout << p->role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")" << endl;
 			sleep(1);
@@ -107,43 +95,43 @@ int main() {
 		if (p->role() != "Medic" && p->role() != "GeneSplicer") {
 			cout << "-" + p->role() << ": It's gonna take forever to treat this city..." << endl;
 			sleep(3);
-			cout << "-GeneSplicer" << ": Let me discover a cure for you!" << endl;
-			sleep(2);
+			cout << "-GeneSplicer" << ": Let me discover a cure for you!\n" << endl;
+			sleep(3);
 
 			geneSplicer.take_card(getCity(geneSplicer.get_curr_city())).build();
 			some_5_cards(&geneSplicer);
-			cout << "GeneSplicer discovering cure..." << endl;
-			sleep(2);
+			cout << "GeneSplicer discovering cure...\n" << endl;
+			sleep(3);
 
 			geneSplicer.discover_cure(b.city_color(infected_city)); // discover a cure to where the current player is
 
-			cout << getColor(b.city_color(infected_city)) << " cure discovered!" << endl;
-			sleep(2);
-			cout << "-GeneSplicer: Now you only need to treat once!" << endl;
-			sleep(2);
-			cout << p->role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")" << endl;
-			sleep(2);
+			cout << getColor(b.city_color(infected_city)) << " cure discovered!\n" << endl;
+			sleep(3);
+			cout << "-GeneSplicer: Now you only need to treat once!\n" << endl;
+			sleep(3);
+			cout << p->role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")\n" << endl;
+			sleep(3);
 			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl << endl; 
 
 		} else if ((*p).role() == "Medic"){
-			cout << "-Medic: This will be a peice of cake!" << endl; 
+			cout << "-Medic: This will be a peice of cake!\n" << endl; 
 			sleep(2);
-			cout << "Medic is using treat()... " << "(disease lv: " << b[infected_city] << ")" << endl;
+			cout << "Medic is using treat()... " << "(disease lv: " << b[infected_city] << ")\n" << endl;
 			medic.treat(infected_city);
 			sleep(2);
-			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl; 
+			cout << getCity(infected_city) << " is " << GREEN << "clean!\n" << RESET << endl; 
 		} else {
 			// Player is GeneSplicer
-			cout << "-GeneSplicer: I can discover a cure with any 5 cards" << endl;
+			cout << "-GeneSplicer: I can discover a cure with any 5 cards\n" << endl;
 			sleep(4);
 			geneSplicer.take_card(infected_city).build(); // build a research station
 			some_5_cards(&geneSplicer);
 			geneSplicer.discover_cure(b.city_color(infected_city));
-			cout << endl << getColor(b.city_color(infected_city)) << " Cure was discovered!" << endl;
+			cout << endl << getColor(b.city_color(infected_city)) << " Cure was discovered!\n" << endl;
 			
-			cout << "-GeneSplicer: Now only one treat() is needed" << endl;
+			cout << "-GeneSplicer: Now only one treat() is needed\n" << endl;
 			sleep(2);
-			cout << geneSplicer.role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")" << endl;
+			cout << geneSplicer.role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")\n" << endl;
 			sleep(2);
 			geneSplicer.treat(infected_city);
 			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl; 
@@ -158,12 +146,6 @@ void print_players(Player** players) {
 	for (int i = 0; i < num_of_players; i++) {
 		cout << *(*(players + i));
 	}
-}
-
-void random_movement(Player* player) {
-	City curr_city = getCity(player->get_curr_city());
-	player->take_card(curr_city);
-	player->fly_charter(random_city());
 }
 
 void some_5_cards(Player* player) {
@@ -192,6 +174,9 @@ Player* choose_player(Player** players) {
 		p = (*(players + (p_index - 1)));
 		return p;
 	} else {
-		return nullptr;
+		return *players;
 	}
 }
+
+// clear; clang++-9 -std=c++2a -o main main.cpp objects/*.o; ./main
+// make clean; make; clear; clang++-9 -std=c++2a -o main main.cpp objects/*.o; ./main

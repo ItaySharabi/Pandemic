@@ -10,7 +10,7 @@ namespace pandemic {
         {/*std::cout << "Dispatcher Created!" << std::endl;*/}
 
         Dispatcher& fly_direct(const City&) override;
-        const std::string role() const override{return "Dispatcher";}
+        const std::string role() const      override{return "Dispatcher";}
     };
     
 };

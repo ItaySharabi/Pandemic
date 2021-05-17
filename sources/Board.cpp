@@ -19,13 +19,10 @@ namespace pandemic {
         bool clean = true;
 
         for (const auto& pair : cities) {
-            Node city = pair.second;
-
-            if (city._disease_dice_count > 0) {
+            if (pair.second._disease_dice_count > 0) {
                 return !clean;    
             }        
         }
-
         return clean;
     }
 
@@ -34,7 +31,6 @@ namespace pandemic {
      *              in order to set the city's disease level to some integer >= 0
     */
     int& Board::operator[] (const City& city){
-
         return cities[city]._disease_dice_count;
     }
     
@@ -52,7 +48,6 @@ namespace pandemic {
      */
     ostream& operator<< (ostream& os, const Board& board) {
         // os << "Board: " << endl;
-
         for (const auto &pair : board.cities) {
             os << "City: " << getCity(pair.first) << "(" << getColor(pair.second._color) << ")" << endl << "{\n";
             os << "\tDisease level:    " << board.cities.at(pair.first)._disease_dice_count << endl;

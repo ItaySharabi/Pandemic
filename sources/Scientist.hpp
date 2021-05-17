@@ -12,6 +12,6 @@ namespace pandemic {
         {num_of_cards_to_discover = min_cards_to_cure;}
 
         Scientist& discover_cure(const Color&) override;
-        const std::string role() const override{return "Scientist";}
+        const std::string role() const         override{return "Scientist";}
     };
 };

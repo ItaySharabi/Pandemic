@@ -10,7 +10,7 @@ namespace pandemic {
 
 
         Researcher& discover_cure(const Color&) override;
-        const std::string role() const override{return "Researcher";}
+        const std::string role() const          override{return "Researcher";}
     };
     
 };

@@ -9,7 +9,7 @@ namespace pandemic {
         OperationsExpert(Board& b, const City& c): Player(b, c)
         {/*std::cout << "OperationsExpert Created!" << std::endl;*/}
 
-        OperationsExpert& build() override;
+        OperationsExpert& build()      override;
         const std::string role() const override{return "OperationsExpert";}
     };
     

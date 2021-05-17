@@ -8,5 +8,4 @@ namespace pandemic {
         b.set_station(curr_city);
         return *this;
     }
-
 };

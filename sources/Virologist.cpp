@@ -10,20 +10,16 @@ namespace pandemic {
         if(cards[city]) {
             City temp = curr_city;
             try {
-                curr_city = city;
+                curr_city = city;           // switch cities
                 Player::treat(city);
-                curr_city = temp;
-                cards[city] = false;
+                curr_city = temp;           
+                cards[city] = false;        // throw card
             } catch(const exception& e) {
-                curr_city = temp;
+                curr_city = temp;           // restore city
                 throw invalid_argument(e.what());
             }
         }else if(city == curr_city) {
-            try {
-                Player::treat(curr_city);
-            } catch (const exception& e) {
-                std::cout << e.what() << std::endl;
-            }
+            Player::treat(curr_city);       // regular treat()
         } else {
             throw invalid_argument("No matching card in hand!");
         }

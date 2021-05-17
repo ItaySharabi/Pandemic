@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 namespace pandemic {
 
@@ -10,7 +9,7 @@ namespace pandemic {
         Yellow
     };
 
-    inline std::string getColor(const Color& color) {
+    static std::string getColor(const Color& color) {
 
         switch (color){
             case 0:
@@ -24,7 +23,7 @@ namespace pandemic {
         }
     }
 
-    inline Color getColor(const std::string& color) {
+    static Color getColor(const std::string& color) {
 
         return (color == "Black") ? Black :
         (color == "Blue") ? Blue : 
