@@ -63,7 +63,7 @@ namespace pandemic {
 
         if (b.has_research_station(curr_city)) {
             const int n = num_of_cards_to_discover; // all players need 5 cards to cure a disease
-            bool unique_cards = true;               // all players need unique color cards to cure.
+            bool unique_cards = true;               // all players need unique colored cards to cure.
             vector<City> good_cards = get_n_cards_from_hand(n, unique_cards, color);
 
             if (good_cards.size() == n) { // if the amount of cards in hand is exactly n
@@ -71,7 +71,7 @@ namespace pandemic {
                 
                 throw_cards(good_cards);  // throw the cards collected
             } else {
-                throw invalid_argument("Not enough cards!");
+                throw invalid_argument("Not enough cards! Need cards to discover a cure");
             }
         } else {
             throw invalid_argument("No Research station!");

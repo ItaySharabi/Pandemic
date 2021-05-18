@@ -10,11 +10,26 @@
 #define YELLOW  "\033[33m"      /* Yellow */
 #define BLUE    "\033[34m"      /* Blue */
 #define GREEN   "\033[32m"      /* Green */
+#define MAGENTA "\033[35m"      /* Magenta */
 
 using namespace pandemic;
 using namespace std;
+// consts and game objects initialization
 const int num_of_players = 8;
 const int num_of_cities = 48;
+Board b;
+
+Dispatcher dispatcher	{b, Atlanta};
+FieldDoctor fieldDoctor {b, Atlanta};
+GeneSplicer geneSplicer {b, Atlanta};
+Medic medic 			{b, Atlanta};
+OperationsExpert oper	{b, Atlanta};
+Researcher researcher	{b, Atlanta};
+Scientist scientist		{b, Atlanta, 1};
+Virologist virologist	{b, Atlanta};
+
+Player *players[num_of_players] = {&dispatcher, &fieldDoctor, &geneSplicer, &medic, 
+									&oper, &researcher, &scientist, &virologist};
 
 City random_city() {return getCity(rand() % num_of_cities);}
 void print_players(Player**);
@@ -27,20 +42,6 @@ int main() {
 
 	srand(time(0)); // set to create pseudo-random numbers.
 
-	Board b;
-
-	Dispatcher dispatcher	{b, Atlanta};
-	FieldDoctor fieldDoctor {b, Atlanta};
-	GeneSplicer geneSplicer {b, Atlanta};
-	Medic medic 			{b, Atlanta};
-	OperationsExpert oper	{b, Atlanta};
-	Researcher researcher	{b, Atlanta};
-	Scientist scientist		{b, Atlanta, 1};
-	Virologist virologist	{b, Atlanta};
-
-	Player *players[num_of_players] = {&dispatcher, &fieldDoctor, &geneSplicer, &medic, 
-									   &oper, &researcher, &scientist, &virologist};
-
 	City infected_city;
 	Player *p;
 	cout << "Game Started!\nAll players spawned in Atlanta. The world is cured of disease so far...\n" << endl;
@@ -51,7 +52,7 @@ int main() {
 		sleep(3);
 		infected_city = random_city();	// Choose a random city to infect
 		b[infected_city] = 10;				// increase disease lv. to 10
-		cout << RED << "A disease was discovered in "  << RESET << getCity(infected_city) << endl;
+		cout << RED << "A disease was discovered in " << getCity(infected_city) << RESET << endl;
 
 		p = choose_player(players); // Takes I/O
 		cout << p->role() + " is now flying to " + getCity(infected_city) << endl;
@@ -117,6 +118,7 @@ int main() {
 			cout << "-GeneSplicer: Now you only need to treat once!\n" << endl;
 			sleep(3);
 			cout << p->role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")\n" << endl;
+			(*p).treat(infected_city); // treat the disease
 			sleep(3);
 			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl << endl; 
 
@@ -147,6 +149,7 @@ int main() {
 			cout << getCity(infected_city) << " is " << GREEN << "clean!" << RESET << endl; 
 		}
 		cout << RED << "End of Demo" << RESET << endl;
+		cout << b;
 	}
 
 	return 0;

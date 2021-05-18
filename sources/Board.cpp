@@ -6,6 +6,10 @@ namespace pandemic {
 
     Board::Board() {
         std::ifstream units_file{"cities_map.txt"};
+        cures[Color::Black] = false;
+        cures[Color::Blue] = false;
+        cures[Color::Red] = false;
+        cures[Color::Yellow] = false;
         read_cities(units_file);
     }
 
@@ -16,14 +20,12 @@ namespace pandemic {
      * This method iterates over the cities map, if all cities are clean.
     */
     bool Board::is_clean() const{
-        bool clean = true;
-
         for (const auto& pair : cities) {
             if (pair.second._disease_dice_count > 0) {
-                return !clean;    
+                return false;    
             }        
         }
-        return clean;
+        return true;
     }
 
     /**
@@ -43,23 +45,58 @@ namespace pandemic {
      * @param os: An output stream object reference to print data into.
      * @param board: A board object to be printed.
      * 
-     * Simply iterate over the board and for each city, print
-     * the city name and color, and all of its neighbor cities.
+     * Iterate over the cities (struct) of the board and print the stats:
+     * 
+     * 1. Disease level: If disease > 0 -> print in GREEN, else print in RED
+     * 2. Cures discovered: If a cure is discovered -> print in GREEN, else print in RED.
+     * 3. Research stations: If a research stations exists in city c -> print c in GREEN, else in RED.
      */
     ostream& operator<< (ostream& os, const Board& board) {
         // os << "Board: " << endl;
         // cout << "Cures Status: " << endl;
+        int disease = 0;
 
-        for (const auto &pair : board.cities) {
-            os << "City: " << getCity(pair.first) << "(" << getColor(pair.second._color) << ")" << endl << "{\n";
-            os << "\tDisease level:    " << board.cities.at(pair.first)._disease_dice_count << endl;
-            os << "\tResearch station: " << board.cities.at(pair.first)._disease_dice_count << endl;
+        os << BOLDCYAN << "=========================== Game Stats ===========================" << RESET << endl;
 
-            for (const auto &neighbor : board.cities.at(pair.first)._neighbors) {
-                os << "\tNeighbor: " << getCity(neighbor) << endl;
-            }   
-            os << "}\n";
+        os << MAGENTA << "level of disease:" << RESET << endl;
+        for(const auto& city: board.cities) {
+            disease = city.second._disease_dice_count;
+            if (disease > 0) {
+                os << "\t" << RED << getCity(city.first) << ": \t\t" << disease << RESET << endl;
+            } else {
+                os << "\t" << GREEN << getCity(city.first) << ": \t\t" << disease << RESET << endl;
+            }
         }
+
+        os << MAGENTA << "Cures Discovered:" << RESET << endl;
+        for(const auto& cure: board.cures) {
+            if (board.has_cure(cure.first)) {
+                os << "\t" << GREEN << getColor(cure.first) << RESET << endl;
+            } else {
+                os << "\t" << RED << getColor(cure.first) << RESET << endl;
+            }
+        }
+
+        os << MAGENTA << "Research stations:" << RESET << endl;
+        for(const auto& rs: board.cities) {
+            if (board.has_research_station(rs.first)) {
+                os << "\t" << GREEN << getCity(rs.first) << RESET << endl;
+            } else {
+                os << "\t" << RED << getCity(rs.first) << RESET << endl;
+            }
+        }
+        os << BOLDCYAN << "==================================================================" << RESET << endl;
+
+        /* print cities and their neighbors:*/
+        // for (const auto &pair : board.cities) {
+        //     os << "City: " << getCity(pair.first) << "(" << getColor(pair.second._color) << ")" << endl << "{\n";
+        //     os << "\tDisease level:    " << board.cities.at(pair.first)._disease_dice_count << endl;
+        //     os << "\tResearch station: " << board.cities.at(pair.first)._disease_dice_count << endl;
+        //     for (const auto &neighbor : board.cities.at(pair.first)._neighbors) {
+        //         os << "\tNeighbor: " << getCity(neighbor) << endl;
+        //     }   
+        //     os << "}\n";
+        // }
         return os;
     }
 
