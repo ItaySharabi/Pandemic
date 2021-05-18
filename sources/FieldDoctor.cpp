@@ -5,7 +5,7 @@ namespace pandemic {
     /**
      *  @role: FieldDoctor
      *  Can treat in his own city AND in neighbor cities.
-     * */
+     */
     FieldDoctor& FieldDoctor::treat(const City& city)  {
         if(b.are_neighbor_cities(city, curr_city) || city == curr_city) {
             City t = curr_city;
