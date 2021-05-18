@@ -58,7 +58,7 @@ int main() {
 		sleep(2);
 		
 		p->take_card(infected_city);
-		p->fly_direct(infected_city);
+		p->fly_direct(infected_city);	// fly to infected city
 		cout << *p << endl;
 		sleep(3);
 
@@ -94,9 +94,15 @@ int main() {
 
 
 		if (p->role() != "Medic" && p->role() != "GeneSplicer") {
-			cout << "-" + p->role() << ": It's gonna take forever to treat this city..." << endl;
+			int i = 0;
+			while (++i < 5) {
+			cout << p->role() + " is using treat()... " << "(disease lv: " << b[infected_city] << ")" << endl;
+			sleep(1);
+			p->treat(infected_city);
+		}
+			cout << "\n-" + p->role() << ": It's gonna take forever to treat this city..." << endl;
 			sleep(3);
-			cout << "-GeneSplicer" << ": Let me discover a cure for you!\n" << endl;
+			cout << "\n-GeneSplicer" << ": Let me discover a cure for you!\n" << endl;
 			sleep(3);
 
 			geneSplicer.take_card(getCity(geneSplicer.get_curr_city())).build();

@@ -3,7 +3,11 @@
 using namespace std;
 
 namespace pandemic {
-
+    /**
+     *  @role: Researcher
+     *  Can discover a cure without having a research station in current city,
+     *  using N=5 uniquly colored cards.
+     */
     Researcher& Researcher::discover_cure(const Color& color) {
         if (b.has_cure(color)) {return *this;}
 

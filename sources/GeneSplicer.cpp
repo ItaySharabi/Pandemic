@@ -4,7 +4,10 @@ using namespace std;
 
 namespace pandemic {
 
-
+    /**
+     *  @role: GeneSplicer
+     *  Can discover a cure using ANY N=5 cards in hand.
+     */
     GeneSplicer& GeneSplicer::discover_cure(const Color& color) {
         
         if (b.has_research_station(curr_city)) {

@@ -3,7 +3,11 @@
 using namespace std;
 
 namespace pandemic{
-
+    /**
+     *  @role: Scientist
+     *  Can discover a cure with K cards, where K is passed 
+     *  as a constructor parameter, OR defaultly set to N=5. 
+     */
     Scientist& Scientist::discover_cure(const Color& color) {
         if(b.has_cure(color)) {return *this;}
 

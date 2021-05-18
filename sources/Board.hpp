@@ -13,7 +13,7 @@ namespace pandemic {
                     //==============*/
 struct Node {
     Color _color;               // City color
-    int _disease_dice_count;    // Diseas count
+    int _disease_dice_count;    // Disease count
     bool _has_research_station; // Research station 
     std::set<City> _neighbors;  // Neighbor cities
 };// Node

@@ -4,7 +4,11 @@
 using namespace std;
 
 namespace pandemic {
-
+    /**
+     *  @role: Virologist
+     *  Can invoke treat(City) by discarding the matching city card,
+     *  and treat the disease from afar.
+     */
     Virologist& Virologist::treat(const City& city)  {
 
         if(cards[city]) {

@@ -3,7 +3,13 @@
 
 namespace pandemic {
 
-
+    /**
+     *  @role: Medic
+     *  A medic's treat() is more powerful than a Player's, and sets
+     *  the disease level to 0 instantly when treat() is invoked!
+     *  Moreover - When some cure is discovered, the Medic "Auto Heals"
+     *  any city of the same color.
+     */
     Medic& Medic::fly_charter(const City& city) {
         Player::fly_charter(city);
         auto_heal();
