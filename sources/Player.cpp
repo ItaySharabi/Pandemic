@@ -12,6 +12,13 @@ namespace pandemic {
         return *this;
     }
 
+    Player& Player::remove_cards() {
+        for (auto& card : cards) {
+            card.second = false;
+        }
+        return *this;
+    }
+
     Player& Player::drive(const City& city) {
         if(b.are_neighbor_cities(curr_city, city)) {
             curr_city = city;

@@ -57,7 +57,7 @@ int main() {
 		p = choose_player(players); // Takes I/O
 		cout << p->role() + " is now flying to " + getCity(infected_city) << endl;
 		sleep(2);
-		
+		 
 		p->take_card(infected_city);
 		p->fly_direct(infected_city);	// fly to infected city
 		cout << *p << endl;

@@ -7,8 +7,10 @@
 #include <vector>
 #include <iostream>
 
-namespace pandemic {
 const int N = 5;    // Default number of cards to discover a cure for any player
+
+namespace pandemic {
+// const int N = 5;    // Default number of cards to discover a cure for any player
 
     class Player {
 
@@ -23,10 +25,11 @@ const int N = 5;    // Default number of cards to discover a cure for any player
             
         public:
             Player(Board&, const City&);
-            ~Player(){}
+            /*virtual*/ ~Player(){}
 
             // Required methods: 
             Player& take_card(const City&);
+            Player& remove_cards();
 
             virtual Player& drive(const City&);
             virtual Player& fly_direct(const City&);
